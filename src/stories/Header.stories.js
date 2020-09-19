@@ -1,10 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import { Header } from './Header';
+import { Header } from "./Header";
+import { Button } from "./Button";
 
 export default {
-  title: 'Example/Header',
+  title: "Example/Header",
   component: Header,
+  subcomponents: {
+    Button,
+  },
 };
 
 const Template = (args) => <Header {...args} />;
