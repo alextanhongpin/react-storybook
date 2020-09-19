@@ -1,23 +1,11 @@
 import React from "react";
 
-import { Button } from "./Button";
+import { Button, ButtonSmall } from "./Button";
 
 export default {
   title: "Example/Button",
   component: Button,
   argTypes: {
-    variant: {
-      control: {
-        type: "select",
-        options: ["primary", "ghost"],
-      },
-    },
-    size: {
-      control: {
-        type: "select",
-        options: ["small", "medium", "large"],
-      },
-    },
     backgroundColor: { control: "color" },
   },
 };
@@ -45,4 +33,11 @@ export const Small = Template.bind({});
 Small.args = {
   size: "small",
   children: "Button",
+};
+
+const ButtonSmallTemplate = (args) => <ButtonSmall {...args} />;
+export const SmallButton = ButtonSmallTemplate.bind({});
+SmallButton.args = {
+  children: "hello world",
+  size: "small",
 };

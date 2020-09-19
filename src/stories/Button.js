@@ -1,30 +1,34 @@
+import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import theme from "styled-theming";
 
+// Returns an object that configures both light and dark theme. If no
+// dark theme is provided, then the light theme will be used as
+// default.
+const lightDark = (light, dark) => ({
+  light,
+  dark: dark ?? light,
+});
+
 const buttonVariants = theme.variants("mode", "variant", {
-  primary: {
-    light: `
+  primary: lightDark(
+    `
       color: white;
       background-color: #1ea7fd;
     `,
-    dark: `
+    `
       color: white;
       background-color: black;
-    `,
-  },
-  ghost: {
-    light: `
+    `
+  ),
+  ghost: lightDark(
+    `
       color: #333;
       background-color: transparent;
       box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
-    `,
-    dark: `
-      color: white;
-      background-color: black;
-      box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;
-    `,
-  },
+    `
+  ),
 });
 
 const buttonSizes = theme.variants("mode", "size", {
@@ -64,10 +68,10 @@ const buttonSizes = theme.variants("mode", "size", {
   },
 });
 
-/**
- * Primary UI component for user interaction
- */
-export const Button = styled.button`
+// NOTE: The styled components does not have prop types defined, but we
+// need it for storybook documentation. One approach is to just wrap it
+// inside another React component...
+export const ButtonStyle = styled.button`
   font-family: "Nunito Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 700;
   border: 0;
@@ -79,6 +83,11 @@ export const Button = styled.button`
   ${buttonSizes};
   background-color: ${(props) => props.backgroundColor};
 `;
+
+/**
+ * Primary UI component for user interaction
+ */
+export const Button = (props) => <ButtonStyle {...props} />;
 
 Button.propTypes = {
   /**
@@ -109,3 +118,5 @@ Button.defaultProps = {
   size: "medium",
   onClick: undefined,
 };
+
+export const ButtonSmall = (props) => <Button {...props} size="small" />;
