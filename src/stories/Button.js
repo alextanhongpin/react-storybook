@@ -6,9 +6,9 @@ import theme from "styled-theming";
 // Returns an object that configures both light and dark theme. If no
 // dark theme is provided, then the light theme will be used as
 // default.
-const lightDark = (light, dark) => ({
+const lightDark = (light, dark = light) => ({
   light,
-  dark: dark ?? light,
+  dark,
 });
 
 const buttonVariants = theme.variants("mode", "variant", {
@@ -32,40 +32,19 @@ const buttonVariants = theme.variants("mode", "variant", {
 });
 
 const buttonSizes = theme.variants("mode", "size", {
-  small: {
-    light: `
-      font-size: 12px;
-      padding: 10px 16px;
-    `,
-    dark: `
-      font-size: 12px;
-      padding: 10px 16px;
-    `,
-  },
-  medium: {
-    light: `
-      font-size: 14px;
-      padding: 11px 20px;
-    `,
-    dark: `
-      font-size: 14px;
-      padding: 11px 20px;
-    `,
-  },
-  large: {
-    light: `
-      font-size: 16px;
-      padding: 12px 24px;
-    `,
-    dark: `
-      font-size: 16px;
-      padding: 12px 24px;
-    `,
-  },
-  default: {
-    light: "",
-    dark: "",
-  },
+  small: lightDark(`
+    font-size: 12px;
+    padding: 10px 16px;
+  `),
+  medium: lightDark(`
+    font-size: 14px;
+    padding: 11px 20px;
+  `),
+  large: lightDark(`      
+    font-size: 16px;
+    padding: 12px 24px;
+  `),
+  default: lightDark(""),
 });
 
 // NOTE: The styled components does not have prop types defined, but we
@@ -87,7 +66,9 @@ export const ButtonStyle = styled.button`
 /**
  * Primary UI component for user interaction
  */
-export const Button = (props) => <ButtonStyle {...props} />;
+export const Button = ({ label, ...rest }) => (
+  <ButtonStyle {...rest}>{label}</ButtonStyle>
+);
 
 Button.propTypes = {
   /**
