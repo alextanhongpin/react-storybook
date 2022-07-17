@@ -1,6 +1,9 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
 
+// Global css.
+import "../src/index.css";
+
 const withThemeProvider = (Story, context) => {
   const theme = context.globals.theme;
   return (

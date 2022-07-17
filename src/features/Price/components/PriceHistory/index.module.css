@@ -1,0 +1,41 @@
+.container {
+  background: white;
+  padding: 0.5rem 0;
+  font-family: monospace;
+}
+
+.row {
+  min-height: 3rem;
+  line-height: 3rem;
+  padding: 0 1rem;
+  display: grid;
+  /* Use 12-grid rules. */
+  grid-template-columns: 4fr 10fr 2fr;
+  grid-column-gap: 1rem;
+}
+
+.row:nth-child(odd) {
+  background: #eee;
+}
+
+.currency {
+  font-family: "Helvetica";
+}
+
+.isExpired {
+  opacity: 0.4;
+}
+.isPending {
+}
+.isActive {
+  background: #88bbff;
+}
+
+.delta {
+  font-size: small;
+  color: green;
+}
+
+.negative {
+  color: #ff4444;
+}
