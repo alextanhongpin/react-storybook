@@ -1,6 +1,7 @@
-import { isArray, isBoolean, isObject, isDefined } from "types";
+import { isDefined } from "types";
 import classes from "./index.module.css";
 
+// DiffTable displays the difference between two data to allow users to visualize the changes better.
 export function DiffTable({ curr, next }) {
   const diffs = useDiff(curr, next);
 
