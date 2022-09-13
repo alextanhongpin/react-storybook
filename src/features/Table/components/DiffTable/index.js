@@ -1,57 +1,43 @@
 import { isDefined } from "types";
 import classes from "./index.module.css";
 
+function beforeClassName({ isModified }) {
+  if (isModified) return classes.isRemoved;
+
+  return;
+}
+
+function afterClassName({ isModified, isRemoved, isAdded }) {
+  if (isRemoved) return classes.isRemoved;
+  if (isAdded || isModified) return classes.isAdded;
+
+  return;
+}
 // DiffTable displays the difference between two data to allow users to visualize the changes better.
+// Reference: https://www.pcworld.com/article/403066/can-excel-track-changes-how-to-add-track-changes-to-the-ribbon-menu.html
 export function DiffTable({ curr, next }) {
   const diffs = useDiff(curr, next);
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Field</th>
-          <th>Old</th>
-          <th>New</th>
+    <table className={classes.table}>
+      <thead className={classes.thead}>
+        <tr className={classes.tr}>
+          <th className={classes.th}>Field</th>
+          <th className={classes.th}>Old</th>
+          <th className={classes.th}>New</th>
         </tr>
       </thead>
       <tbody>
         {diffs.map((diff) => {
-          if (diff.isModified) {
-            return (
-              <tr>
-                <td>{diff.key}</td>
-                <td className={classes.isRemoved}>-{diff.curr}</td>
-                <td className={classes.isAdded}>+{diff.next}</td>
-              </tr>
-            );
-          }
-
-          if (diff.isAdded) {
-            return (
-              <tr>
-                <td>{diff.key}</td>
-                <td>{diff.curr}</td>
-                <td className={classes.isAdded}>+{diff.next}</td>
-              </tr>
-            );
-          }
-
-          if (diff.isRemoved) {
-            return (
-              <tr>
-                <td>{diff.key}</td>
-                <td>{diff.curr}</td>
-                <td className={classes.isRemoved}>-{diff.next}</td>
-              </tr>
-            );
-          }
-
-          // Unchanged.
           return (
-            <tr>
-              <td>{diff.key}</td>
-              <td>{diff.curr}</td>
-              <td>{diff.next}</td>
+            <tr key={diff.key} className={classes.tr}>
+              <td className={classes.td}>{diff.key}</td>
+              <td className={[classes.td, beforeClassName(diff)].join(" ")}>
+                {diff.curr}
+              </td>
+              <td className={[classes.td, afterClassName(diff)].join(" ")}>
+                {diff.next}
+              </td>
             </tr>
           );
         })}
@@ -75,8 +61,8 @@ function useDiff(curr = {}, next = {}) {
     const isModified = !isAdded && !isRemoved && currValue !== nextValue;
     return {
       key,
-      curr: `${currValue}`,
-      next: `${nextValue}`,
+      curr: hasCurr ? `${currValue}` : "-",
+      next: hasNext ? `${nextValue}` : "-",
       isModified,
       isRemoved,
       isAdded,

@@ -1,3 +1,31 @@
+.table {
+  border-collapse: collapse;
+  background: white;
+}
+
+.thead .tr {
+  border-bottom: 1px solid #ddd;
+  background: #ccc;
+}
+.tr:not(:last-child) {
+  border-bottom: 1px solid #ddd;
+}
+
+.td:not(:last-child),
+.th:not(:last-child) {
+  border-right: 1px solid #ddd;
+}
+
+.td:first-child,
+.th:first-child {
+  color: #666;
+}
+
+.td,
+.th {
+  padding: 0.5rem;
+}
+
 .isSelected {
   background: red;
 }
