@@ -1,0 +1,15 @@
+.isSelected {
+  background: red;
+}
+
+.isAdded {
+  background: #e6ffec;
+  /*color: #ccffd8;*/
+  color: #377f48;
+}
+
+.isRemoved {
+  background: #ffebe9;
+  /*color: #ffd7d5;*/
+  color: #77231e;
+}

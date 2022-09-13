@@ -1,0 +1,26 @@
+.table {
+  border-collapse: collapse;
+  background: white;
+}
+
+.tr:not(:last-child) {
+  border-bottom: 1px solid #ddd;
+}
+.tr {
+  border-collapse: collapse;
+  min-height: 1.5rem;
+  line-height: 1.5rem;
+}
+
+.td:first-child {
+  background: #f7f7f7;
+  color: #666;
+}
+
+.td:not(:last-child) {
+  border-right: 1px solid #ddd;
+}
+
+.td {
+  padding: 0.5rem 1rem;
+}

@@ -2,47 +2,8 @@ import Dinero from "dinero.js";
 import { format, formatDistanceToNow } from "date-fns";
 import classes from "./index.module.css";
 
-const now = new Date();
-const defaultData = [
-  {
-    from: new Date(2022, 0, 1),
-    to: new Date(2022, 1, 1),
-    amount: 2000,
-    currency: "SGD",
-    status: "EXPIRED",
-  },
-  {
-    from: new Date(2022, 1, 1),
-    to: new Date(2022, 2, 1),
-    amount: 1500,
-    currency: "SGD",
-    status: "EXPIRED",
-  },
-  {
-    from: new Date(2022, 2, 1),
-    to: new Date(2022, 3, 1),
-    amount: 1250,
-    currency: "SGD",
-    status: "EXPIRED",
-  },
-  {
-    from: new Date(),
-    to: new Date(now.getFullYear(), now.getMonth() + 1, now.getDate()),
-    amount: 2350,
-    currency: "SGD",
-    status: "ACTIVE",
-  },
-  {
-    from: new Date(now.getFullYear(), now.getMonth() + 1, now.getDate()),
-    to: new Date(now.getFullYear(), now.getMonth() + 2, now.getDate()),
-    amount: 2240,
-    currency: "SGD",
-    status: "PENDING",
-  },
-];
-
 // PriceHistory displays the product price history.
-export default function PriceHistory({ data = defaultData }) {
+export default function PriceHistory({ data = [] }) {
   return (
     <div className={classes.container}>
       {data.map((item, index) => (
@@ -87,6 +48,7 @@ function DeltaCurrency({ value, prevValue }) {
     </span>
   );
 }
+
 function formatDate(date) {
   return format(date, "dd MMM yyyy");
 }
