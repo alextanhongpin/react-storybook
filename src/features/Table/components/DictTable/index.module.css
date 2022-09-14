@@ -1,6 +1,7 @@
 .table {
   border-collapse: collapse;
   background: white;
+  width: 100%;
 }
 
 .tr:not(:last-child) {

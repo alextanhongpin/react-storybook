@@ -42,26 +42,28 @@ export function Layer({ data = [] }) {
     <div>
       <button onClick={handleReset}>Reset</button>
       {list.map((value, index) => (
-        <div key={value}>
-          {index + 1} {value}
-          <button
-            onClick={(evt) => handleDecrement(index)}
-            disabled={index === min}
-          >
-            Up
-          </button>
-          <input
-            type="number"
-            className={classes.input}
-            value={index + 1}
-            onChange={(evt) => handleChange(evt, index)}
-          />
-          <button
-            onClick={(evt) => handleIncrement(index)}
-            disabled={index === max}
-          >
-            Down
-          </button>
+        <div key={value} className={classes.listItem}>
+          <div>{value}</div>
+          <div>
+            <button
+              onClick={(evt) => handleDecrement(index)}
+              disabled={index === min}
+            >
+              &#9650;
+            </button>
+            <button
+              onClick={(evt) => handleIncrement(index)}
+              disabled={index === max}
+            >
+              &#9660;
+            </button>
+            <input
+              type="number"
+              className={classes.input}
+              value={index + 1}
+              onChange={(evt) => handleChange(evt, index)}
+            />
+          </div>
         </div>
       ))}
     </div>
