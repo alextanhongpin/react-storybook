@@ -1,6 +1,20 @@
 .table {
+  --border-color: #ccc;
   border-collapse: collapse;
   background: white;
+}
+.table thead tr,
+.table tbody tr:not(:last-child) {
+  border-bottom: 1px solid var(--border-color);
+}
+.table td,
+.table th {
+  padding: 0.5rem 1rem;
+}
+
+.table td:not(:last-child),
+.table th:not(:last-child) {
+  border-right: 1px solid var(--border-color);
 }
 
 .tooltip {
@@ -25,12 +39,14 @@
 .tooltipText {
   position: absolute;
   top: -1rem;
-  left: calc(100% + 0.5rem);
+  left: calc(100% + 1rem);
   visibility: hidden;
-  background: rgba(255, 255, 255, 0.95);
   padding: 0.5rem 1rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  background: white;
+  border: 1px solid #ddd;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
   border-radius: 0.5rem;
+  min-width: 10rem;
   z-index: 1;
 }
 

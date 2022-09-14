@@ -54,12 +54,11 @@ export function TrackChangesTable({ curr = [], next = [], keyExtractor }) {
         {nextBody.map((row, rowIndex) => (
           <tr key={rowIndex}>
             {row.map((col, colIndex) => (
-              <td key={`${rowIndex}:${colIndex}`}>
-                <TrackChangesTableCell
-                  value={currBody[rowIndex][colIndex]}
-                  nextValue={col}
-                />
-              </td>
+              <TrackChangesTableCell
+                value={currBody[rowIndex][colIndex]}
+                nextValue={col}
+                key={`${rowIndex}:${colIndex}`}
+              />
             ))}
           </tr>
         ))}
@@ -71,13 +70,13 @@ export function TrackChangesTable({ curr = [], next = [], keyExtractor }) {
 export function TrackChangesTableCell({ value, nextValue }) {
   if (value !== nextValue) {
     return (
-      <div className={classes.tooltip}>
-        {JSON.stringify(nextValue)}
+      <td className={classes.tooltip}>
+        {nextValue.toString()}
         <div className={classes.tooltipText}>
           {`Changed from "${value}" to "${nextValue}"`}
         </div>
-      </div>
+      </td>
     );
   }
-  return <div>{nextValue}</div>;
+  return <td>{nextValue.toString()}</td>;
 }
