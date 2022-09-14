@@ -1,0 +1,39 @@
+.table {
+  border-collapse: collapse;
+  background: white;
+}
+
+.tooltip {
+  position: relative;
+  cursor: pointer;
+}
+
+.tooltip::after {
+  content: "";
+  display: block;
+  height: 0;
+  width: 0;
+  border-top: 5px solid transparent;
+  border-left: 5px solid transparent;
+  border-right: 5px solid orange;
+  border-bottom: 5px solid orange;
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+
+.tooltipText {
+  position: absolute;
+  top: -1rem;
+  left: calc(100% + 0.5rem);
+  visibility: hidden;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 0.5rem 1rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  border-radius: 0.5rem;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltipText {
+  visibility: visible;
+}
